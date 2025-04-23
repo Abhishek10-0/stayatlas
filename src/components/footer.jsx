@@ -9,7 +9,7 @@ const socialIcons = [
 
 const Footer = () => {
     return (
-      <footer className="bg-[#3d3c3c] text-white py-10 text-center w-full">
+      <footer className="bg-[#3d3c3c] text-white py-10 text-center w-full font-custom">
         <div className="container mx-auto w-[80%]">
             <h3 className="text-2xl mb-5 pb-2.5 border-b-2 border-white font-bold">
                 For more Information
