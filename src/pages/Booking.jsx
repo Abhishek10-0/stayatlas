@@ -1,5 +1,5 @@
 import React from 'react'
-import Gallery from '../components/Booking/Gallery'
+import Gallery from '../components/Gallery'
 import Footer from '../components/footer'
 
 const Booking = () => {
