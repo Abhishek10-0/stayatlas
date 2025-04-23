@@ -1,5 +1,5 @@
 import React from 'react'
-import Footer from '../componenets/footer'
+import Footer from '../components/footer'
 
 const Booking = () => {
   return (
