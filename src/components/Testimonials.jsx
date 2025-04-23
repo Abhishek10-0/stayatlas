@@ -1,8 +1,8 @@
 import React from 'react';
 import { FaQuoteLeft } from 'react-icons/fa';
-import front1 from "../../assets/frontv.jpg";
-import bedroom from "../../assets/bdroom.jpg";
-import bedroom2 from "../../assets/bdroom2.jpg";
+import front1 from "../assets/frontv.jpg";
+import bedroom from "../assets/bdroom.jpg";
+import bedroom2 from "../assets/bdroom2.jpg";
 
 const testimonials = [
   {

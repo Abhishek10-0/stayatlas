@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { FaImage, FaChevronLeft, FaChevronRight, FaTimes } from "react-icons/fa";
 import { useSwipeable } from "react-swipeable";
-import front1 from "../../assets/frontv.jpg";
-import bedroom from "../../assets/bdroom.jpg";
-import bedroom2 from "../../assets/bdroom2.jpg";
+import front1 from "../assets/frontv.jpg";
+import bedroom from "../assets/bdroom.jpg";
+import bedroom2 from "../assets/bdroom2.jpg";
 
 const photos = [
   { src: front1, alt: "Villa Main View", caption: "Villa Main View" },

@@ -1,14 +1,16 @@
 import React from 'react'
-import Gallery from '../components/Booking/Gallery'
 import Footer from '../components/footer'
-import Testimonials from '../components/Booking/Testimonials'
+import Header from '../components/Header'
+import VillaDetails from '../components/VilaDetail'
+import Testimonials from '../components/Testimonials'
+import Gallery from "../components/Gallery"
 
 const Booking = () => {
   return (
     <div>
       <Gallery/>
+      <VillaDetails/>
       <Testimonials/>
-      <Footer/>
     </div>
   )
 }
