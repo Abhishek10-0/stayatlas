@@ -83,7 +83,7 @@ export default function ExclusiveProperty() {
       <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">
         Exclusive Luxury Villas & Stays
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-10">
         {properties.map((property, i) => (
           <div
             key={property.id}
@@ -93,11 +93,11 @@ export default function ExclusiveProperty() {
               visibleCards[property.id] ? 'opacity-100' : 'opacity-0'
             } bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-lg`}
           >
-            <div className="relative overflow-hidden rounded-t-2xl">
+            <div className="relative rounded-t-2xl">
               <img
                 src={property.image}
                 alt={property.name}
-                className="w-full h-60 object-cover transition-transform duration-500 hover:scale-105"
+                className="w-full h-60 object-cover"
               />
               <button
                 onClick={() => toggleFavorite(property.id)}
@@ -111,7 +111,7 @@ export default function ExclusiveProperty() {
               </button>
             </div>
 
-            <div className="p-6">
+            <div className="p-6 ">
               <h3 className="text-lg font-semibold text-gray-900 mb-1">
                 {property.name}
               </h3>
