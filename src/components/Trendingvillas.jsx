@@ -5,9 +5,9 @@ const TrendingVillas = () => {
   const trending = properties.filter(villa => villa.rating > 4.5);
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+    <div className="flex flex-wrap justify-center gap-6 p-4">
       {trending.map(villa => (
-        <div key={villa.id} className="rounded-lg overflow-hidden shadow-md bg-white">
+        <div key={villa.id} className="flex flex-col rounded-lg overflow-hidden shadow-md bg-white w-full sm:w-1/3 md:w-1/4 lg:w-1/4">
           <img 
             src={villa.image} 
             alt={villa.name} 

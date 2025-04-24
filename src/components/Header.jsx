@@ -4,29 +4,43 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import MenuIcon from '@mui/icons-material/Menu';
 import LoginForm from './loginForm';
 import PropertyRequestForm from './listform';
 
 const Header = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
-  const [showListingForm, setShowListingForm] = useState(false);
+  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null); 
 
-  // Handlers to show forms
+  
   const handleLoginClick = () => {
     setShowLoginForm(true);
   };
 
   const handleListingClick = () => {
-    setShowListingForm((prevState) => !prevState); // Toggle the listing form
+    setIsFormOpen(!isFormOpen); 
   };
 
-  // Handlers to close forms
+  
   const handleCloseLoginForm = () => {
     setShowLoginForm(false);
   };
 
   const handleCloseListingForm = () => {
     setShowListingForm(false);
+  };
+
+
+  const handleMenuClick = (event) => {
+    setAnchorEl(event.currentTarget); 
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null); 
   };
 
   return (
@@ -36,9 +50,17 @@ const Header = () => {
           <Box component="img" src={logo} alt="StayAtlas Logo" sx={{ height: 40 }} />
         </Box>
 
+        {/* Mobile Menu Icon */}
+        <Box sx={{ display: { xs: 'flex', sm: 'none' } }}>
+          <IconButton onClick={handleMenuClick} color="inherit">
+            <MenuIcon />
+          </IconButton>
+        </Box>
+
+        {/* Desktop Navigation */}
         <Box
           sx={{
-            display: 'flex',
+            display: { xs: 'none', sm: 'flex' },
             flexWrap: 'wrap',
             alignItems: 'center',
             justifyContent: 'center',
@@ -49,33 +71,33 @@ const Header = () => {
           <Button href="../../Explore/Html/explore.html" sx={navLinkStyle}>Explore</Button>
           <Button href="../../EXCLUSIVE/Html/exclusive.html" sx={navLinkStyle}>Exclusive</Button>
 
-          {/* Toggle property listing form with the same button text */}
-          <Button
-            onClick={handleListingClick}
-            sx={navLinkStyle}
-          >
-            {showListingForm ? 'Property Listing Form' : 'List Your Property'}
+          {/* Button for Property Listing Form */}
+          <Button onClick={handleListingClick} sx={navLinkStyle}>
+            List Your Property
           </Button>
 
-          <Button
-            onClick={handleLoginClick}
-            variant="contained"
-            sx={{
-              backgroundColor: '#ffffff',
-              color: '#000000',
-              '&:hover': {
-                backgroundColor: '#f0f0f0',
-              },
-            }}
-          >
+          <Button onClick={handleLoginClick} variant="contained" sx={{ backgroundColor: '#ffffff', color: '#000000' }}>
             Login
           </Button>
         </Box>
       </Toolbar>
 
-      {/* Rendering the forms based on their respective state */}
+      {/* Mobile Menu */}
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleMenuClose}
+        sx={{ display: { xs: 'block', sm: 'none' } }}
+      >
+        <MenuItem onClick={handleMenuClose}>Home</MenuItem>
+        <MenuItem onClick={handleMenuClose}>Explore</MenuItem>
+        <MenuItem onClick={handleMenuClose}>Exclusive</MenuItem>
+        <MenuItem onClick={handleListingClick}>List Your Property</MenuItem>
+        <MenuItem onClick={handleLoginClick}>Login</MenuItem>
+      </Menu>
+      <PropertyRequestForm isFormOpen={isFormOpen} setIsFormOpen={setIsFormOpen} />
       {showLoginForm && <LoginForm onClose={handleCloseLoginForm} />}
-      {showListingForm && <PropertyRequestForm onClose={handleCloseListingForm} />}
+      
     </AppBar>
   );
 };

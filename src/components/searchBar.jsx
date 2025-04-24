@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   TextField,
@@ -20,6 +20,9 @@ const Form = () => {
     rooms: 1,
   });
 
+
+  const today = new Date().toISOString().split('T')[0];
+
   const handleGuestClick = (event) => {
     setGuestAnchorEl(event.currentTarget);
   };
@@ -38,21 +41,30 @@ const Form = () => {
   const open = Boolean(guestAnchorEl);
   const id = open ? 'guest-popover' : undefined;
 
+ 
+  const handleCheckOutChange = (e) => {
+    if (e.target.value <= checkIn) {
+      alert('Checkout date must be later than check-in date');
+    } else {
+      setCheckOut(e.target.value);
+    }
+  };
+
   return (
     <Box
       sx={{
         p: 2,
-        pt: 2, 
+        pt: 2,
         border: 'none',
         borderRadius: 2,
-        maxWidth:'auto',
+        maxWidth: 'auto',
         margin: 'auto',
         display: 'flex',
         flexWrap: 'wrap',
         gap: 2,
         justifyContent: 'center',
         alignItems: 'center',
-        '& > :not(style)': { m: 1, width: '25ch' }
+        '& > :not(style)': { m: 1, width: '25ch' },
       }}
     >
       <TextField
@@ -69,15 +81,25 @@ const Form = () => {
         InputLabelProps={{ shrink: true }}
         fullWidth
         variant="filled"
+        InputProps={{
+          inputProps: {
+            min: today, // Disable past dates
+          },
+        }}
       />
       <TextField
         label="Check-out"
         type="date"
         value={checkOut}
-        onChange={(e) => setCheckOut(e.target.value)}
+        onChange={handleCheckOutChange}
         InputLabelProps={{ shrink: true }}
         fullWidth
         variant="filled"
+        InputProps={{
+          inputProps: {
+            min: checkIn ? checkIn : today, // Ensure checkout is after checkin
+          },
+        }}
       />
       <TextField
         label="Guests"
