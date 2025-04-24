@@ -4,11 +4,13 @@ import { useSwipeable } from "react-swipeable";
 import front1 from "../assets/frontv.jpg";
 import bedroom from "../assets/bdroom.jpg";
 import bedroom2 from "../assets/bdroom2.jpg";
+import slide1 from "../assets/slide1.jpg"
 
 const photos = [
   { src: front1, alt: "Villa Main View", caption: "Villa Main View" },
   { src: bedroom, alt: "Bedroom", caption: "Bedroom" },
-  { src: bedroom2, alt: "Pool View", caption: "Pool View" }
+  { src: bedroom2, alt: "Pool View", caption: "Pool View" },
+  { src: slide1, alt: "xyz", caption: "xyz"}
 ];
 
 export default function Gallery() {

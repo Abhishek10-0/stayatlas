@@ -84,7 +84,7 @@ const VilaDetail = () => {
             <h2 className="text-2xl font-bold">Amenities</h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 mt-4">
               {[
-                { icon: "❄️", label: "Air Conditioner" },
+                { icon: <FaSnowflake className="text-black" />, label: "Air Conditioner" },
                 { icon: <FaCar />, label: "Private Parking" },
                 { icon: <FaFire />, label: "Barbeque (Chargeable)" },
                 { icon: <FaHotjar />, label: "Microwave" },
