@@ -1,35 +1,41 @@
-
-import logo from '../assets/stay.PNG';
 import React, { useState } from 'react';
-
+import logo from '../assets/stay.PNG';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import LoginForm from './loginForm';
+import PropertyRequestForm from './listform';
 
-const header = () => {
-  // Step 1: State for login form
+const Header = () => {
   const [showLoginForm, setShowLoginForm] = useState(false);
+  const [showListingForm, setShowListingForm] = useState(false);
 
-  // Step 2: Button click handlers
+  // Handlers to show forms
   const handleLoginClick = () => {
     setShowLoginForm(true);
   };
 
+  const handleListingClick = () => {
+    setShowListingForm((prevState) => !prevState); // Toggle the listing form
+  };
+
+  // Handlers to close forms
   const handleCloseLoginForm = () => {
     setShowLoginForm(false);
   };
+
+  const handleCloseListingForm = () => {
+    setShowListingForm(false);
+  };
+
   return (
     <AppBar position="fixed" sx={{ backgroundColor: '#0e3226', boxShadow: 3, zIndex: 1300 }}>
       <Toolbar sx={{ justifyContent: 'space-between', flexWrap: 'wrap' }}>
-
-        {/* Logo */}
         <Box component="a" href="/" sx={{ display: 'flex', alignItems: 'center', mb: { xs: 1, sm: 0 } }}>
           <Box component="img" src={logo} alt="StayAtlas Logo" sx={{ height: 40 }} />
         </Box>
 
-        {/* Navigation Buttons (Always visible) */}
         <Box
           sx={{
             display: 'flex',
@@ -39,48 +45,49 @@ const header = () => {
             gap: 2,
           }}
         >
-          <Button href="#" sx={navLinkStyle}>
-            Home
+          <Button href="#" sx={navLinkStyle}>Home</Button>
+          <Button href="../../Explore/Html/explore.html" sx={navLinkStyle}>Explore</Button>
+          <Button href="../../EXCLUSIVE/Html/exclusive.html" sx={navLinkStyle}>Exclusive</Button>
+
+          {/* Toggle property listing form with the same button text */}
+          <Button
+            onClick={handleListingClick}
+            sx={navLinkStyle}
+          >
+            {showListingForm ? 'Property Listing Form' : 'List Your Property'}
           </Button>
-          <Button href="../../Explore/Html/explore.html" sx={navLinkStyle}>
-            Explore
-          </Button>
-          <Button href="../../EXCLUSIVE/Html/exclusive.html" sx={navLinkStyle}>
-            Exclusive
-          </Button>
-          <Button href="#" id="property-btn" sx={navLinkStyle}>
-            List Your Property
-          </Button>
-          <Button onClick={handleLoginClick} variant="contained"className='bg-white'> 
+
+          <Button
+            onClick={handleLoginClick}
+            variant="contained"
+            sx={{
+              backgroundColor: '#ffffff',
+              color: '#000000',
+              '&:hover': {
+                backgroundColor: '#f0f0f0',
+              },
+            }}
+          >
             Login
           </Button>
-          {showLoginForm && <LoginForm onClose={handleCloseLoginForm} />}
-
         </Box>
       </Toolbar>
+
+      {/* Rendering the forms based on their respective state */}
+      {showLoginForm && <LoginForm onClose={handleCloseLoginForm} />}
+      {showListingForm && <PropertyRequestForm onClose={handleCloseListingForm} />}
     </AppBar>
   );
 };
 
-// Reusable styles
 const navLinkStyle = {
   color: 'white',
   fontSize: '0.875rem',
   fontWeight: 500,
   textTransform: 'none',
-  '&:hover': { color: '#90ee90' },
+  '&:hover': {
+    color: '#90ee90',
+  },
 };
 
-const loginButtonStyle = {
-  px: 2,
-  py: 1,
-  bgcolor: 'white',
-  color: '#0e3226',
-  fontSize: '0.875rem',
-  fontWeight: 600,
-  borderRadius: 1,
-  textTransform: 'none',
-  '&:hover': { bgcolor: '#f5f5f5' },
-};
-
-export default header;
+export default Header;
