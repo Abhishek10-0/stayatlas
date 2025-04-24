@@ -1,12 +1,25 @@
-import React from 'react';
+
 import logo from '../assets/stay.PNG';
+import React, { useState } from 'react';
 
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import LoginForm from './loginForm';
 
 const header = () => {
+  // Step 1: State for login form
+  const [showLoginForm, setShowLoginForm] = useState(false);
+
+  // Step 2: Button click handlers
+  const handleLoginClick = () => {
+    setShowLoginForm(true);
+  };
+
+  const handleCloseLoginForm = () => {
+    setShowLoginForm(false);
+  };
   return (
     <AppBar position="fixed" sx={{ backgroundColor: '#0e3226', boxShadow: 3, zIndex: 1300 }}>
       <Toolbar sx={{ justifyContent: 'space-between', flexWrap: 'wrap' }}>
@@ -38,9 +51,11 @@ const header = () => {
           <Button href="#" id="property-btn" sx={navLinkStyle}>
             List Your Property
           </Button>
-          <Button href="../../Explore/Html/login.html" sx={loginButtonStyle}>
+          <Button onClick={handleLoginClick} variant="contained"className='bg-white'> 
             Login
           </Button>
+          {showLoginForm && <LoginForm onClose={handleCloseLoginForm} />}
+
         </Box>
       </Toolbar>
     </AppBar>
