@@ -13,9 +13,6 @@ const ExclusiveInfo = () => {
           guests: 10,
           price: 29999,
           rating: 5.0,
-          image: [
-            image1,image2,image3
-          ]
      }
   return (
     <>
@@ -26,7 +23,7 @@ const ExclusiveInfo = () => {
                 <img src={image1} alt="" className="h-1/2" />
             </div>
             <div className="p-6 ">
-              <h3 className="text-lg font-semibold text-gray-900 mb-1">
+              <h3 className="text-lg font-semibold text-gray-900 p-4">
                 {property.name}
               </h3>
               <p className="text-sm text-gray-600 flex items-center mb-2">
