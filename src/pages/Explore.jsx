@@ -1,3 +1,4 @@
+
 import PropertyListingGrid from '../components/propertygrid';
 
 const Explore = () => {
