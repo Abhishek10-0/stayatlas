@@ -7,10 +7,10 @@ import Explore from "./pages/Explore"
 import ErrorPage from "./pages/ErrorPage"
 import ListYourProperty from "./pages/FooterPage/ListYourProperty";
 import AboutUs from "./pages/FooterPage/aboutus";
-import PrivacyPolicy from "./pages/FooterPage/PrivacyPolicy";
 import TermsAndConditions from "./pages/FooterPage/TermsAndConditions";
 import CancellationPolicy from "./pages/FooterPage/CancellationPolicy";
 import Chat from "./pages/FooterPage/Chat";
+import Privacy from "./pages/FooterPage/Privacy"
 
 function App() {
 
@@ -45,7 +45,7 @@ function App() {
       },
       {
         path:"/privacy-policy",
-        element:(<PrivacyPolicy/>)
+        element:(<Privacy/>)
       },
       {
         path:"/terms-and-conditions",
