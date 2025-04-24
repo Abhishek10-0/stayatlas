@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { SiWhatsapp, SiInstagram, SiFacebook } from 'react-icons/si';
 
 const socialIcons = [
@@ -16,11 +17,11 @@ const Footer = () => {
             </h3>
             <ul className="flex flex-wrap justify-center gap-4 my-5 md:flex-row flex-col">
                 {[
-                    { text: 'List your property', link: '../footer/html/list.html' },
-                    { text: 'Stays', link: '#' },
-                    { text: 'Customer Support', link: '../footer/html/chat.html' },
-                    { text: 'About us', link: '../footer/html/aboutus.html' },
-                    { text: 'Home', link: 'Home/Html/index.html' },
+                    { text: 'List your property', link: '/list-your-property', isRouterLink: true },
+                    { text: 'Stays', link: '/explore' },
+                    { text: 'Customer Support', link: '/chat', isRouterLink: true },
+                    { text: 'About us', link: '/about-us', isRouterLink: true },
+                    { text: 'Home', link: '/', isRouteLink: true },
                     { text: 'Contact us', link: 'https://wa.me/918591131447' },
                 ].map((item, index) => (
                     <li key={index} className="mx-4 md:my-0 my-2">
@@ -71,9 +72,9 @@ const Footer = () => {
             <h3 className="text-2xl mb-5 pb-2.5 border-b-2 border-white">Policies</h3>
             <div className="flex flex-wrap justify-center">
               {[
-                { text: 'Terms & Conditions', link: '../footer/html/term.html' },
-                { text: 'Privacy Policy', link: '../footer/html/PrivacyPolicy.html' },
-                { text: 'Cancellation Policy', link: '../footer/html/Cancellation Policy.html' },
+                { text: 'Terms & Conditions', link: '/terms-and-conditions', isRouterLink: true },
+                { text: 'Privacy Policy', link: '/privacy-policy', isRouterLink: true },
+                { text: 'Cancellation Policy', link: '/cancellation-policy', isRouterLink: true },
               ].map((policy, index) => (
                 <a
                   key={index}

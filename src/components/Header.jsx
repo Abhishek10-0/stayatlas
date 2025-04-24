@@ -1,10 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate()
   return (
     <header className="bg-black sticky top-0 z-50 shadow-md">
       <div className="max-w-[2560px] mx-auto flex justify-between items-center py-5 px-6 md:px-20">
-        <div className="text-white text-2xl font-light tracking-widest hover:scale-105 transition-transform duration-300 cursor-pointer">
+        <div onClick={()=>navigate("/")} className="text-white text-2xl font-light tracking-widest hover:scale-105 transition-transform duration-300 cursor-pointer">
           StayAtlas
         </div>
 
