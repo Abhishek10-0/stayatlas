@@ -5,8 +5,8 @@ import ExclusiveInfo from '../components/exclusiveInfo'
 const Exclusive = () => {
   return (
     <>
-     {/*<ExclusiveProperty />*/ }
-     {<ExclusiveInfo />}
+     {/*<ExclusiveProperty />*/}
+     {<ExclusiveInfo /> }
     </>
   )
 }
