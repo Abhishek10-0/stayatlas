@@ -5,6 +5,12 @@ import Booking from "./pages/Booking"
 import Exclusive from "./pages/Exclusive"
 import Explore from "./pages/Explore"
 import ErrorPage from "./pages/ErrorPage"
+import ListYourProperty from "./pages/FooterPage/ListYourProperty";
+import AboutUs from "./pages/FooterPage/aboutus";
+import PrivacyPolicy from "./pages/FooterPage/PrivacyPolicy";
+import TermsAndConditions from "./pages/FooterPage/TermsAndConditions";
+import CancellationPolicy from "./pages/FooterPage/CancellationPolicy";
+import Chat from "./pages/FooterPage/Chat";
 
 function App() {
 
@@ -28,6 +34,30 @@ function App() {
       {
         path:"/explore",
         element:(<Explore/>)
+      },
+      {
+        path:"/list-your-property",
+        element:(<ListYourProperty/>)
+      },
+      {
+        path:"/about-us",
+        element:(<AboutUs/>)
+      },
+      {
+        path:"/privacy-policy",
+        element:(<PrivacyPolicy/>)
+      },
+      {
+        path:"/terms-and-conditions",
+        element:(<TermsAndConditions/>)
+      },
+      {
+        path:"/cancellation-policy",
+        element:(<CancellationPolicy/>)
+      },
+      {
+        path:"/chat",
+        element:(<Chat/>)
       }
     ]
   }])
