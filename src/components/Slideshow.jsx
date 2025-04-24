@@ -34,7 +34,7 @@ const slideImages = [
 
 const Slideshow = () => {
   return (
-    <div className="slide-container max-w-screen-xl mx-auto mt-6">
+    <div className="slide-container w-screen mt-0">
       <Slide
         duration={4000}
         transitionDuration={800}
@@ -46,7 +46,7 @@ const Slideshow = () => {
         {slideImages.map((slideImage, index) => (
           <div key={index}>
             <div
-              className="h-[500px] md:h-[600px] bg-cover bg-center flex items-center justify-center relative overflow-hidden"
+              className="w-full h-[500px] md:h-[600px] bg-cover bg-center flex items-center justify-center relative overflow-hidden"
               style={{ backgroundImage: `url(${slideImage.url})` }}
             >
               <div className="absolute inset-0 bg-black/40"></div>

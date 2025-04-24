@@ -1,45 +1,71 @@
-import React from "react";
+import React from 'react';
+import logo from '../assets/stay.PNG';
 
-const Header = () => {
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+
+const header = () => {
   return (
-    <header className="bg-black sticky top-0 z-50 shadow-md">
-      <div className="max-w-[2560px] mx-auto flex justify-between items-center py-5 px-6 md:px-20">
-        <div className="text-white text-2xl font-light tracking-widest hover:scale-105 transition-transform duration-300 cursor-pointer">
-          StayAtlas
-        </div>
+    <AppBar position="fixed" sx={{ backgroundColor: '#0e3226', boxShadow: 3, zIndex: 1300 }}>
+      <Toolbar sx={{ justifyContent: 'space-between', flexWrap: 'wrap' }}>
 
-        <div className="hidden md:flex space-x-8 items-center">
-          <a href="#" className="text-white font-semibold text-sm relative hover:after:w-full after:transition-all after:duration-300 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-blue-500 after:w-0">HOME</a>
+        {/* Logo */}
+        <Box component="a" href="/" sx={{ display: 'flex', alignItems: 'center', mb: { xs: 1, sm: 0 } }}>
+          <Box component="img" src={logo} alt="StayAtlas Logo" sx={{ height: 40 }} />
+        </Box>
 
-          <div className="relative group">
-            <button className="text-white font-semibold text-sm flex items-center gap-1">LOCATION <span className="text-xs">▼</span></button>
-            <div className="absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-opacity duration-300 bg-white text-gray-800 min-w-[180px] shadow-xl rounded-xl overflow-hidden mt-2">
-              <a href="#" className="px-4 py-3 block hover:bg-blue-500 hover:text-white transition-all duration-200">Panvel</a>
-              <a href="#" className="px-4 py-3 block hover:bg-blue-500 hover:text-white transition-all duration-200">Khanavale</a>
-              <a href="#" className="px-4 py-3 block hover:bg-blue-500 hover:text-white transition-all duration-200">Other Locations</a>
-            </div>
-          </div>
-
-          <div className="relative group">
-            <button className="text-white font-semibold text-sm flex items-center gap-1">EXCLUSIVE <span className="text-xs">▼</span></button>
-            <div className="absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-opacity duration-300 bg-white text-gray-800 min-w-[180px] shadow-xl rounded-xl overflow-hidden mt-2">
-              <a href="#" className="px-4 py-3 block hover:bg-blue-500 hover:text-white transition-all duration-200">Villas</a>
-              <a href="#" className="px-4 py-3 block hover:bg-blue-500 hover:text-white transition-all duration-200">Resorts</a>
-              <a href="#" className="px-4 py-3 block hover:bg-blue-500 hover:text-white transition-all duration-200">Pool Homes</a>
-            </div>
-          </div>
-
-          <a href="https://wa.me/918591131447" target="_blank" rel="noopener noreferrer" className="text-white font-semibold text-sm relative hover:after:w-full after:transition-all after:duration-300 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-blue-500 after:w-0">CONTACT US</a>
-        </div>
-
-        <div className="md:hidden flex flex-col justify-between w-8 h-5 cursor-pointer">
-          <span className="h-1 w-full bg-white rounded-md"></span>
-          <span className="h-1 w-full bg-white rounded-md"></span>
-          <span className="h-1 w-full bg-white rounded-md"></span>
-        </div>
-      </div>
-    </header>
+        {/* Navigation Buttons (Always visible) */}
+        <Box
+          sx={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 2,
+          }}
+        >
+          <Button href="#" sx={navLinkStyle}>
+            Home
+          </Button>
+          <Button href="../../Explore/Html/explore.html" sx={navLinkStyle}>
+            Explore
+          </Button>
+          <Button href="../../EXCLUSIVE/Html/exclusive.html" sx={navLinkStyle}>
+            Exclusive
+          </Button>
+          <Button href="#" id="property-btn" sx={navLinkStyle}>
+            List Your Property
+          </Button>
+          <Button href="../../Explore/Html/login.html" sx={loginButtonStyle}>
+            Login
+          </Button>
+        </Box>
+      </Toolbar>
+    </AppBar>
   );
 };
 
-export default Header;
+// Reusable styles
+const navLinkStyle = {
+  color: 'white',
+  fontSize: '0.875rem',
+  fontWeight: 500,
+  textTransform: 'none',
+  '&:hover': { color: '#90ee90' },
+};
+
+const loginButtonStyle = {
+  px: 2,
+  py: 1,
+  bgcolor: 'white',
+  color: '#0e3226',
+  fontSize: '0.875rem',
+  fontWeight: 600,
+  borderRadius: 1,
+  textTransform: 'none',
+  '&:hover': { bgcolor: '#f5f5f5' },
+};
+
+export default header;
