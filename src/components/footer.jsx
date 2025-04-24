@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { SiWhatsapp, SiInstagram, SiFacebook } from 'react-icons/si';
 
 const socialIcons = [
@@ -16,7 +17,7 @@ const Footer = () => {
             </h3>
             <ul className="flex flex-wrap justify-center gap-4 my-5 md:flex-row flex-col">
                 {[
-                    { text: 'List your property', link: '../footer/html/list.html' },
+                    { text: 'List your property', link: '/list-your-property', isRouterLink: true },
                     { text: 'Stays', link: '#' },
                     { text: 'Customer Support', link: '../footer/html/chat.html' },
                     { text: 'About us', link: '../footer/html/aboutus.html' },

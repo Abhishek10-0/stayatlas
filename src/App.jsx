@@ -5,6 +5,7 @@ import Booking from "./pages/Booking"
 import Exclusive from "./pages/Exclusive"
 import Explore from "./pages/Explore"
 import ErrorPage from "./pages/ErrorPage"
+import ListYourProperty from "./pages/FooterPage/ListYourProperty";
 
 function App() {
 
@@ -28,6 +29,10 @@ function App() {
       {
         path:"/explore",
         element:(<Explore/>)
+      },
+      {
+        path:"/list-your-property",
+        element:(<ListYourProperty/>)
       }
     ]
   }])
