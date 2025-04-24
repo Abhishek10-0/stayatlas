@@ -101,7 +101,7 @@ const VilaDetail = () => {
                   key={idx}
                   className="flex flex-col items-center text-center text-xs"
                 >
-                  <div className="text-xl">{item.icon}</div>
+                  <div className="text-xl font-black">{item.icon}</div>
                   <div className="mt-1">{item.label}</div>
                 </div>
               ))}

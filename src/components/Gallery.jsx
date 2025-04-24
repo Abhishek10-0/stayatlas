@@ -76,9 +76,9 @@ export default function Gallery() {
               alt="Pool View"
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
             />
-            <div className="absolute right-5 bottom-5 bg-black/70 text-white px-3 py-2 rounded-md text-sm">
+            {/* <div className="absolute right-5 bottom-5 bg-black/70 text-white px-3 py-2 rounded-md text-sm">
               +{photos.length - 3} More
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

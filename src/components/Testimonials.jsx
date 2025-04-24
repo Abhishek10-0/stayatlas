@@ -36,7 +36,7 @@ export default function Testimonials() {
       </div>
 
       {/* Slider/Responsive grid */}
-      <div className="overflow-x-auto scroll-smooth snap-x snap-mandatory flex gap-6 pb-4">
+      <div className="overflow-x-auto scroll-smooth snap-x snap-mandatory flex justify-center gap-6 pb-4">
         {testimonials.map((item, idx) => (
           <article
             key={idx}
