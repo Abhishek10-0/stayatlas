@@ -25,9 +25,10 @@ const VilaDetail = () => {
   const [children, setChildren] = useState(0);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const tomorrow = new Date(Date.now() + 24 * 60 * 60 * 1000);
 
   return (
-    <div className="font-custom min-h-screen flex items-center justify-center bg-[#f8f7f6] text-black font-[Georgia] p-6">
+    <div className="font-custom min-h-screen flex items-center justify-center bg-[#f8f7f6] text-black p-6">
       <div className="flex flex-col md:flex-row gap-6 max-w-7xl w-full">
         <div className="md:w-2/3 space-y-6">
           <div>
@@ -183,6 +184,8 @@ const VilaDetail = () => {
                 selectsStart
                 startDate={startDate}
                 endDate={endDate}
+                minDate={new Date()}  
+                maxDate={endDate}
                 placeholderText="Check in"
                 className="w-full px-3 py-2 border rounded"
               />
@@ -190,9 +193,9 @@ const VilaDetail = () => {
                 selected={endDate}
                 onChange={(date) => setEndDate(date)}
                 selectsEnd
-                startDate={startDate}
+                // startDate={startDate}
                 endDate={endDate}
-                minDate={startDate}
+                minDate={startDate || tomorrow}
                 placeholderText="Check out"
                 className="w-full px-3 py-2 border rounded"
               />
