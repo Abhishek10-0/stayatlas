@@ -2,6 +2,7 @@ import React from 'react'
 import Slideshow from '../components/Slideshow'
 import Form from '../components/searchBar'
 import Testimonials from '../components/Testimonials'
+import TrendingVillas from '../components/Trendingvillas'
 
 const Home = () => {
   return (
@@ -16,12 +17,13 @@ const Home = () => {
      </div>
 
      <div>
-      <Testimonials></Testimonials>
+      <TrendingVillas></TrendingVillas>
      </div>
 
-     
+     <div>
+      <Testimonials></Testimonials>
+     </div>   
 
-  
     </>
   )
 }
