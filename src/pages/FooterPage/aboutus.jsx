@@ -1,65 +1,141 @@
-import React from 'react';
+import React, { useEffect, useRef } from "react";
+import "../../index.css";
+import { motion } from "framer-motion";
 
 const AboutUs = () => {
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-[#d4af75] to-[#0e3226] text-white py-8">
-      <div className="max-w-[800px] mx-auto p-5 bg-black bg-opacity-70 rounded-lg animate-fadeIn">
-        <h1 className="text-3xl font-bold mb-6 text-white animate-slideIn">Welcome to Stay Atlas</h1>
-        
-        <p className="mb-5 animate-fadeInUp">
-          Your trusted partner in vacation home rentals based in Mumbai! We assist villa owners across India in maximizing their property's potential by connecting them with travelers seeking unique experiences.
-        </p>
-        
-        <p className="mb-5 animate-fadeInUp">
-          We believe every villa has a story! Our dedicated team showcases your property's charm through professional photography and targeted advertising, ensuring it stands out in a competitive market.
-        </p>
-        
-        <p className="mb-5 animate-fadeInUp">
-          We pride ourselves on exceptional support, offering personalized guidance on pricing, property management, and guest communication. Trust and transparency are our top priorities, providing a seamless experience for you and your guests.
-        </p>
-        
-        <p className="mb-5 animate-fadeInUp">
-          Join our growing network of villa owners and benefit from our extensive reach across popular destinations in India. Let us help you turn your property into a sought-after vacation spot while you enjoy your profits as well as peace of mind at the same time.
-        </p>
-        
-        <p className="mb-5 animate-fadeInUp">
-          Experience the difference with Stay Atlas—where your villa becomes a home away from home for travelers, and we handle the rest!
-        </p>
+ // Add parallax scroll effect
+ useEffect(() => {
+   const handleScroll = () => {
+     const parallaxElements = document.querySelectorAll('.parallax-bg');
+     parallaxElements.forEach(element => {
+       const scrollPosition = window.pageYOffset;
+       // Adjust the divisor (5) to control parallax intensity
+       element.style.transform = `translateY(${scrollPosition / 3}px)`;
+       });
+     };
 
-        <div className="mt-8 p-4 bg-[rgba(139,255,177,0.9)] rounded text-black shadow-md animate-fadeInUp">
-          <h2 className="text-2xl font-bold mb-3">Our Mission and Vision</h2>
-          <p>
-            At Stay Atlas, our mission is to connect travelers with unique vacation experiences while empowering villa owners to maximize their property's potential. We envision a world where every villa tells its own story and provides unforgettable memories for guests.
-          </p>
-        </div>
+     window.addEventListener('scroll', handleScroll);
+     return () => {
+       window.removeEventListener('scroll', handleScroll);
+     };
+   }, []);
 
-        <div className="mt-8 p-4 bg-[rgba(139,255,177,0.9)] rounded text-black shadow-md animate-fadeInUp">
-          <h2 className="text-2xl font-bold mb-3">What Our Clients Say</h2>
-          <p className="mb-3">"Stay Atlas transformed my villa into a top destination! Their support and marketing strategies are unmatched." - Villa Owner</p>
-          <p>"I had a seamless experience with Stay Atlas. They took care of everything!" - Satisfied Guest</p>
-        </div>
+ const testimonialsRef = useRef(null);
 
-        <div className="mt-8 p-4 bg-[rgba(139,255,177,0.9)] rounded text-black shadow-md animate-fadeInUp">
-          <h2 className="text-2xl font-bold mb-3">Join Us Today!</h2>
-          <p>
-            Contact us to learn how we can help you turn your property into a sought-after vacation spot. Explore our services and become part of the Stay Atlas family!
-          </p>
-        </div>
+ const scrollTestimonials = (scrollOffset) => {
+   testimonialsRef.current.scrollLeft += scrollOffset;
+ };
 
-        <div className="mt-8 p-4 bg-[rgba(139,255,177,0.9)] rounded text-black shadow-md animate-fadeInUp">
-          <h2 className="text-2xl font-bold mb-3">Frequently Asked Questions</h2>
-          <p className="mb-3">
-            <strong>Q: How do I list my property with Stay Atlas?</strong><br />
-            A: Simply contact us through our website, and we will guide you through the process.
-          </p>
-          <p>
-            <strong>Q: What support do you offer to villa owners?</strong><br />
-            A: We provide personalized guidance on pricing, property management, and guest communication.
-          </p>
-        </div>
-      </div>
-    </div>
-  );
+ return (
+   <div className="min-h-screen w-full">
+     {/* Hero Section */}
+     <div className="h-screen flex flex-col justify-center items-center text-white relative overflow-hidden">
+       {/* Parallax Background */}
+       <div 
+         className="parallax-bg"
+         style={{
+           backgroundImage: `url('https://images.unsplash.com/photo-1506744038136-46273834b3fb')`,
+           backgroundSize: 'cover',
+           backgroundPosition: 'center',
+           backgroundColor: "rgba(14,50,38,0.5)",
+           backgroundBlendMode: "overlay",
+         }}
+         ></div>
+       
+       <motion.h1
+         initial={{ opacity: 0, y: 20 }}
+         animate={{ opacity: 1, y: 0 }}
+         transition={{ duration: 1 }}
+         className="text-5xl md:text-6xl font-bold mb-4 z-10"
+       >
+         Welcome to Stay Atlas
+       </motion.h1>
+       <motion.p
+         initial={{ opacity: 0, y: 20 }}
+         animate={{ opacity: 1, y: 0 }}
+         transition={{ duration: 1.5 }}
+         className="text-lg md:text-xl z-10"
+       >
+         Where Stories Meet Stays
+       </motion.p>
+       <div className="absolute bottom-10 animate-bounce text-white text-sm z-10">
+         Scroll to Explore ↓
+       </div>
+     </div>
+
+     {/* Pull-Up Content Section */}
+     <motion.div
+       initial={{ y: "100%" }}
+       animate={{ y: 0 }}
+       transition={{ duration: 1.2, ease: "easeInOut" }}
+       className="-mt-20 bg-white rounded-t-[2rem] shadow-2xl p-8 md:p-16 text-[#0e3226] relative z-20"
+     >
+       {/* Mission and Vision */}
+       <div className="mb-8 p-6 rounded-xl shadow-md" style={{ backgroundColor: '#f9f9f9', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
+         <h2 className="text-3xl font-semibold mb-2">Our Mission and Vision</h2>
+         <p>
+           Connecting travelers with unforgettable vacation experiences while
+           empowering villa owners to unlock their property's full potential.
+         </p>
+       </div>
+
+       {/* Story and How We Work */}
+       <div className="grid md:grid-cols-2 gap-8 mb-8">
+         <div className="p-6 rounded-xl shadow h-64 flex flex-col justify-end" style={{ backgroundColor: '#f9f9f9', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
+           <h3 className="text-2xl font-bold mb-2">Our Story</h3>
+           <p>
+             Born in Mumbai, Stay Atlas grew to connect homeowners and travelers
+             across India.
+           </p>
+         </div>
+         <div className="p-6 rounded-xl shadow h-64 flex flex-col justify-end" style={{ backgroundColor: '#f9f9f9', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
+           <h3 className="text-2xl font-bold mb-2">How We Work</h3>
+           <p>
+             We handle marketing, guest communication, and property care — you
+             enjoy peace of mind and profits.
+           </p>
+         </div>
+       </div>
+
+       {/* Testimonials */}
+       <div className="mb-8 shadow" style={{ backgroundColor: '#f9f9f9', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
+         <h3 className="text-2xl font-semibold mb-4 p-6">Testimonials</h3>
+         <div ref={testimonialsRef} className="flex overflow-x-auto snap-x p-6">
+           {/* Testimonial 1 */}
+           <div className="flex-shrink-0 w-80 snap-start mr-6 p-4 rounded-md" style={{ backgroundColor: 'white', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
+             <img src="http://googleusercontent.com/image_generation_content/0" alt="User 1" className="w-12 h-12 rounded-full mb-2" />
+             <div className="text-yellow-500 mb-1">⭐⭐⭐⭐⭐</div>
+             <p className="italic">"Stay Atlas turned my villa into a dream destination!" – Happy Owner</p>
+           </div>
+           {/* Testimonial 2 */}
+           <div className="flex-shrink-0 w-80 snap-start mr-6 p-4 rounded-md" style={{ backgroundColor: 'white', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
+             <img src="http://googleusercontent.com/image_generation_content/1" alt="User 2" className="w-12 h-12 rounded-full mb-2" />
+             <div className="text-yellow-500 mb-1">⭐⭐⭐⭐</div>
+             <p className="italic">"Super smooth, super reliable. Highly recommend!" – Guest</p>
+           </div>
+           {/* Testimonial 3 */}
+           <div className="flex-shrink-0 w-80 snap-start mr-6 p-4 rounded-md" style={{ backgroundColor: 'white', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
+             <img src="http://googleusercontent.com/image_generation_content/2" alt="User 3" className="w-12 h-12 rounded-full mb-2" />
+             <div className="text-yellow-500 mb-1">⭐⭐⭐⭐⭐</div>
+             <p className="italic">"Exceptional service and support throughout the entire process." - Another Happy Owner</p>
+           </div>
+         </div>
+         <div className="flex justify-center p-4">
+           <button onClick={() => scrollTestimonials(-300)} className="px-4 py-2 bg-gray-200 rounded-l-md">←</button>
+           <button onClick={() => scrollTestimonials(300)} className="px-4 py-2 bg-gray-200 rounded-r-md">→</button>
+         </div>
+       </div>
+
+       {/* Call to Action */}
+       <div className="text-center p-6 rounded-xl shadow" style={{ backgroundColor: '#d4af75', color: 'black', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
+         <h3 className="text-2xl font-bold mb-2">Join the Stay Atlas Family</h3>
+         <p>
+           Contact us today to get started with your vacation rental journey.
+         </p>
+       </div>
+     </motion.div>
+   </div>
+ );
 };
 
 export default AboutUs;
