@@ -110,7 +110,7 @@ export default function PropertyListingGrid() {
     <div className="bg-gray-50 p-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
         {properties.map((property) => (
-          <div key={property.id} className="bg-white rounded-lg overflow-hidden shadow">
+          <div key={property.id} className="hover:bg-gray-100 bg-white rounded-lg overflow-hidden shadow">
             <div className="relative">
               <img 
                 src={property.image} 
@@ -119,12 +119,12 @@ export default function PropertyListingGrid() {
               />
               <button 
                 onClick={() => toggleFavorite(property.id)}
-                className="absolute top-3 right-3 bg-white rounded-full p-1"
+                className=" absolute top-3 cursor-pointer hover:bg-gray-300 p-1 right-3 bg-white rounded-full"
               >
                 <Heart 
                   size={20} 
-                  fill={favorites[property.id] ? "#000000" : "none"} 
-                  color={favorites[property.id] ? "#000000" : "#000000"} 
+                  fill={favorites[property.id] ? "red" : "none"} 
+                  color={favorites[property.id] ? "none" : "#000000"} 
                 />
               </button>
             </div>
@@ -161,7 +161,7 @@ export default function PropertyListingGrid() {
                 </div>
               </div>
               
-              <button className="w-full mt-4 bg-black text-white font-medium py-2 rounded-md">
+              <button className="w-full mt-4 bg-black hover:bg-gray-800 cursor-pointer text-white font-medium py-2 rounded-md">
                 Enquire Now
               </button>
             </div>

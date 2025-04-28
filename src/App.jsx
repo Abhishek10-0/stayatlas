@@ -11,6 +11,8 @@ import TermsAndConditions from "./pages/FooterPage/TermsAndConditions";
 import CancellationPolicy from "./pages/FooterPage/CancellationPolicy";
 import Chat from "./pages/FooterPage/Chat";
 import Privacy from "./pages/FooterPage/Privacy"
+import SignupForm from "./pages/Signup"
+import Login from "./pages/Login"
 
 function App() {
 
@@ -22,6 +24,14 @@ function App() {
       {
         path:"/",
         element:(<Home/>)
+      },
+      {
+        path:"/signup",
+        element:(<SignupForm/>)
+      },
+      {
+        path:"/login",
+        element:(<Login/>)
       },
       {
         path:"/booking",
