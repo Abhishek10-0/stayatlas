@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import logo from "../assets/stay.jpg"; // Replace with actual file path and name
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
-
+  const navigate= useNavigate()
   return (
     <header className="bg-[#00291c] sticky top-0 z-50 shadow-md">
       <div className="max-w-[2560px] mx-auto flex justify-between items-center py-5 px-6 md:px-20">
         {/* Logo */}
-        <div className="cursor-pointer">
+        {/* <div className="text-white text-2xl font-light tracking-widest hover:scale-105 transition-transform duration-300 cursor-pointer">
+          StayAtlas
+        </div> */}
+        <div onClick={()=>navigate("/")} className="cursor-pointer">
           <img src={logo} alt="StayAtlas Logo" className="h-10 md:h-12 w-auto" />
         </div>
 
@@ -30,9 +34,9 @@ const Header = () => {
           <div className="relative group">
             <button className="text-[#D6AE7B] font-semibold text-sm flex items-center gap-1">EXCLUSIVE <span className="text-xs">▼</span></button>
             <div className="absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-opacity duration-300 bg-white text-gray-800 min-w-[180px] shadow-xl rounded-xl overflow-hidden mt-2 z-40">
-              <a href="#" className="px-4 py-3 block hover:bg-[#D6AE7B] hover:text-white transition-all duration-200">Villas</a>
-              <a href="#" className="px-4 py-3 block hover:bg-[#D6AE7B] hover:text-white transition-all duration-200">Resorts</a>
-              <a href="#" className="px-4 py-3 block hover:bg-[#D6AE7B] hover:text-white transition-all duration-200">Pool Homes</a>
+              <a href="#" className="px-4 py-3 block hover:bg-blue-500 hover:text-white transition-all duration-200">Villas</a>
+              <a href="#" className="px-4 py-3 block hover:bg-blue-500 hover:text-white transition-all duration-200">Resorts</a>
+              <a href="#" className="px-4 py-3 block hover:bg-blue-500 hover:text-white transition-all duration-200">Pool Homes</a>
             </div>
           </div>
 
