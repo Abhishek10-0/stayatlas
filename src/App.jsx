@@ -11,6 +11,7 @@ import TermsAndConditions from "./pages/FooterPage/TermsAndConditions";
 import CancellationPolicy from "./pages/FooterPage/CancellationPolicy";
 import Chat from "./pages/FooterPage/Chat";
 import Privacy from "./pages/FooterPage/Privacy"
+import ListLandingPage from "./pages/FooterPage/ListLandingPage"
 
 function App() {
 
@@ -58,6 +59,10 @@ function App() {
       {
         path:"/chat",
         element:(<Chat/>)
+      },
+      {
+        path:"/list-landing-page",
+        element:(<ListLandingPage/>)
       }
     ]
   }])

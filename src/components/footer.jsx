@@ -18,7 +18,7 @@ const Footer = () => {
 
         <ul className="flex flex-wrap justify-center gap-4 my-5 md:flex-row flex-col text-base">
           {[
-            { text: 'List your property', link: '/list-your-property' },
+            { text: 'List your property', link: '/list-landing-page' },
             { text: 'Stays', link: '/explore' },
             { text: 'Customer Support', link: '/chat' },
             { text: 'About us', link: '/about-us' },

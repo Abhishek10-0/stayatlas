@@ -126,13 +126,7 @@ const AboutUs = () => {
          </div>
        </div>
 
-       {/* Call to Action */}
-       <div className="text-center p-6 rounded-xl shadow" style={{ backgroundColor: '#d4af75', color: 'black', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
-         <h3 className="text-2xl font-bold mb-2">Join the Stay Atlas Family</h3>
-         <p>
-           Contact us today to get started with your vacation rental journey.
-         </p>
-       </div>
+      
      </motion.div>
    </div>
  );
