@@ -1,20 +1,90 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Heart } from 'lucide-react';
+import { Heart, Edit2Icon } from 'lucide-react';
 import front1 from "../assets/frontv.jpg";
 import bedroom from "../assets/bdroom.jpg";
 import bedroom2 from "../assets/bdroom2.jpg";
+import { useNavigate } from 'react-router-dom';
+import EditModal from './EditModal';
 
 export default function ExclusiveProperty() {
   const [favorites, setFavorites] = useState({});
   const [visibleCards, setVisibleCards] = useState({});
-  const cardRefs = useRef([]);
+  const [hotels, setHotels] = useState([]);
+  const [selectedHotel, setSelectedHotel] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const cardRefs = useRef({});
+
+  const navigate = useNavigate();
+
+  const handleSave = (updatedHotel) => {
+    setHotels((prev) =>
+      prev.map((hotel) => (hotel.id === updatedHotel.id ? updatedHotel : hotel))
+    );
+    setIsModalOpen(false);
+  };
+
+  const handleEditClick = (hotel) => {
+    setSelectedHotel(hotel);
+    setIsModalOpen(true);
+  };
+
+  const toggleFavorite = (id) => {
+    setFavorites((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
+
+  const viewHandler = (hotel) => {
+    navigate('/viewExclusive', { state: hotel });
+  };
 
   useEffect(() => {
+    setHotels([
+      {
+        id: 1,
+        name: "Silva Heritage, South Goa Pet Pool Villa",
+        location: "Benaulim, India",
+        beds: 5,
+        baths: 5,
+        guests: 10,
+        price: 29999,
+        rating: 5.0,
+        image: front1,
+      },
+      {
+        id: 2,
+        name: "15 BHK Hills Estate, Pawna Lake Pet Pool Villa",
+        location: "Pawna Lake, India",
+        beds: 15,
+        baths: 15,
+        guests: 50,
+        price: 19999,
+        rating: 4.7,
+        image: bedroom,
+      },
+      {
+        id: 3,
+        name: "Villa Vanessa, North Goa Pet Pool Villa",
+        location: "Siolim, India",
+        beds: 5,
+        baths: 5,
+        guests: 12,
+        price: 9999,
+        rating: 4.7,
+        image: bedroom2,
+      },
+    ]);
+  }, []);
+
+  useEffect(() => {
+    if (!hotels.length) return;
+
     const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
+      (entries) => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setVisibleCards(prev => ({
+            setVisibleCards((prev) => ({
               ...prev,
               [entry.target.dataset.id]: true,
             }));
@@ -24,59 +94,18 @@ export default function ExclusiveProperty() {
       { threshold: 0.2 }
     );
 
-    cardRefs.current.forEach((card) => {
+    hotels.forEach((hotel) => {
+      const card = cardRefs.current[hotel.id];
       if (card) observer.observe(card);
     });
 
     return () => {
-      cardRefs.current.forEach((card) => {
+      hotels.forEach((hotel) => {
+        const card = cardRefs.current[hotel.id];
         if (card) observer.unobserve(card);
       });
     };
-  }, []);
-
-  const toggleFavorite = (id) => {
-    setFavorites(prev => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
-  };
-
-  const properties = [
-    {
-      id: 1,
-      name: "Silva Heritage, South Goa Pet Pool Villa",
-      location: "Benaulim, India",
-      beds: 5,
-      baths: 5,
-      guests: 10,
-      price: 29999,
-      rating: 5.0,
-      image: front1,
-    },
-    {
-      id: 2,
-      name: "15 BHK Hills Estate, Pawna Lake Pet Pool Villa",
-      location: "Pawna Lake, India",
-      beds: 15,
-      baths: 15,
-      guests: 50,
-      price: 19999,
-      rating: 4.7,
-      image: bedroom,
-    },
-    {
-      id: 3,
-      name: "Villa Vanessa, North Goa Pet Pool Villa",
-      location: "Siolim, India",
-      beds: 5,
-      baths: 5,
-      guests: 12,
-      price: 9999,
-      rating: 4.7,
-      image: bedroom2,
-    },
-  ];
+  }, [hotels]);
 
   return (
     <div className="bg-white py-16 px-4 sm:px-10 lg:px-20">
@@ -84,11 +113,11 @@ export default function ExclusiveProperty() {
         Exclusive Luxury Villas & Stays
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-        {properties.map((property, i) => (
+        {hotels.map((property) => (
           <div
             key={property.id}
             data-id={property.id}
-            ref={el => (cardRefs.current[i] = el)}
+            ref={(el) => (cardRefs.current[property.id] = el)}
             className={`transition-opacity duration-1000 ${
               visibleCards[property.id] ? 'opacity-100' : 'opacity-0'
             } bg-white border border-gray-200 rounded-2xl shadow-md hover:shadow-lg`}
@@ -111,7 +140,7 @@ export default function ExclusiveProperty() {
               </button>
             </div>
 
-            <div className="p-6 ">
+            <div className="p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-1">
                 {property.name}
               </h3>
@@ -134,60 +163,37 @@ export default function ExclusiveProperty() {
                     <span className="text-sm text-gray-500"> /night</span>
                   </p>
                 </div>
-                <div className="flex items-center">
-                  <svg className="h-4 w-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                  <span className="ml-1 text-sm font-medium">{property.rating}</span>
+                <div className="flex items-center gap-2">
+                  <div className="flex items-center">
+                    <svg className="h-4 w-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                    <span className="ml-1 text-sm font-medium">{property.rating}</span>
+                  </div>
+                  <button onClick={() => handleEditClick(property)} className='p-2 rounded-full hover:bg-gray-200'>
+                    <Edit2Icon size={18} />
+                  </button>
                 </div>
               </div>
 
-              <button className="w-full mt-6 bg-black text-white py-2.5 rounded-lg text-sm font-medium hover:opacity-90 transition">
-                Enquire Now
+              <button
+                onClick={() => viewHandler(property)}
+                className="w-full mt-6 bg-black text-white py-2.5 rounded-lg text-sm font-medium hover:opacity-90 transition"
+              >
+                View
               </button>
             </div>
           </div>
         ))}
       </div>
-      {/* Review Section */}
-<div className="mt-20 px-4 sm:px-10 lg:px-20">
-  <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-8 text-center">
-    What Our Guests Say
-  </h2>
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-    {[
-      {
-        name: "Aarav Sharma",
-        comment: "The villa was absolutely stunning and the staff were very friendly. Perfect for a weekend getaway!",
-        rating: 5,
-      },
-      {
-        name: "Diya Mehta",
-        comment: "Amazing view, peaceful environment, and super clean rooms. Will definitely book again!",
-        rating: 4.5,
-      },
-      {
-        name: "Rohan Verma",
-        comment: "Spacious and luxurious. The pool was a highlight for our family. Highly recommend.",
-        rating: 4.8,
-      },
-    ].map((review, index) => (
-      <div key={index} className="bg-white p-6 rounded-2xl border shadow-md hover:shadow-lg transition">
-        <div className="flex justify-between items-center mb-2">
-          <h4 className="text-md font-semibold text-gray-800">{review.name}</h4>
-          <div className="flex items-center">
-            <svg className="h-4 w-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-            </svg>
-            <span className="ml-1 text-sm font-medium text-gray-700">{review.rating}</span>
-          </div>
-        </div>
-        <p className="text-sm text-gray-600">{review.comment}</p>
-      </div>
-    ))}
-  </div>
-</div>
 
+      {isModalOpen && selectedHotel && (
+        <EditModal
+          hotelData={selectedHotel}
+          onClose={() => setIsModalOpen(false)}
+          onSave={handleSave}
+        />
+      )}
     </div>
   );
 }

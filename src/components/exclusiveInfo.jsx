@@ -71,7 +71,7 @@ const ExclusiveInfo = () => {
         setMouseStart(e.clientX);
     };
 
-    const onMouseMove = (e) => {
+    const onMouseMove = () => {
         if (!isMouseDown) return;
     };
 
@@ -102,11 +102,19 @@ const ExclusiveInfo = () => {
 
   return (
     <>
-    <div className="w-vw bg-[#F5F5F5] h-180">
+    <div className="w-vw bg-[#F5F5F5] h-225 md:h-215">
     <div className="absolute h-full w-full flex justify-center items-center">
-        <div className="backdrop-blur-[10px] h-auto w-90 ">
-            <div className="p-2">
-                <img src={image1} alt="" className="h-1/2" />
+        <div className="backdrop-blur-[17px] h-auto w-90 ">
+            <div className=" p-2"
+              onTouchStart={onTouchStart}
+              onTouchMove={onTouchMove}
+              onTouchEnd={onTouchEnd}
+              onMouseDown={onMouseDown}
+              onMouseMove={onMouseMove}
+              onMouseUp={onMouseUp}
+              onMouseLeave={onMouseLeave}
+            >
+                <img src={property.image[currentImageIndex]} alt="" className="h-1/2 overflow-hidden mt-40 md:mt-0" />
             </div>
             <div className="p-6 ">
               <h3 className="text-lg font-semibold text-gray-900 p-4">
@@ -138,24 +146,27 @@ const ExclusiveInfo = () => {
                   <span className="ml-1 text-sm font-medium">{property.rating}</span>
                 </div>
               </div>
+              <div className="h-50 md:h-0 pt-2 overflow-auto md:overflow-hidden w-full">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique voluptatum facere minima est, sapiente ex quas quod dicta placeat dolorum ipsa, quidem odit ea non in totam. Maxime quas quis natus iure et non asperiores praesentium mollitia exercitationem! Velit excepturi temporibus, molestiae quo eligendi error placeat aliquid nemo commodi ut vel? Atque ducimus omnis est iusto! Soluta maiores officiis culpa quisquam accusantium eius atque repudiandae at facere fuga! Blanditiis veritatis tempore molestias possimus aut, aperiam in aliquam provident quo voluptates tenetur porro asperiores cumque ab voluptatem nulla, corporis, nobis vel?
+              </div>
 
-              <button className="w-full mt-6 bg-black text-white py-2.5 rounded-lg text-sm font-medium hover:opacity-90 transition">
-                Enquire Now
+              <button className="w-full mt-6 bg-black text-white py-2.5 rounded-lg text-sm font-medium hover:opacity-70 transition">
+                Book Now
               </button>
             </div>
         </div>
     </div>
-    <div  className="p-0 m-0 flex object-cover h-full">
-    <div className="w-1/2 px-8 py-10">
-  <div className="font-custom text-slate-600 space-y-4">
+    <div  className="h-0 md:h-full p-0 m-0 flex object-cover ">
+    <div className=" w-1/2 overflow-hidden md:overflow-visible pl-20 pr-80 py-35 bg-gray-100">
+   <div className="font-custom text-slate-600 space-y-4">
     
     {/* Property Name */}
-    <h1 className="text-3xl font-bold leading-snug text-slate-700">{property.name}</h1>
+    <h1 className="text-4xl font-bold leading-snug text-slate-700">{property.name}</h1>
 
     {/* Location */}
-    <div className="flex items-center text-gray-500 text-sm">
+    <div className="flex items-center text-slate-700 font-semibold text-4xl py-2">
       <svg
-        className="h-5 w-5 mr-2 text-gray-500"
+        className="h-5 w-5 mr-2 text-slate-500"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -177,19 +188,26 @@ const ExclusiveInfo = () => {
     </div>
 
     {/* Bed/Bath/Guest Info */}
-    <div className="text-sm text-slate-600">
+    <div className="text-2xl text-slate-700 font-semibold py-2">
       {property.beds} Beds &bull; {property.baths} Baths &bull; {property.guests} Guests
     </div>
 
     {/* Price */}
-    <div className="text-xl font-semibold text-slate-800">
+    <div className="text-xl font-semibold text-slate-800 py-2">
       ₹{property.price.toLocaleString()}
       <span className="text-sm font-normal text-gray-500"> / night</span>
-      </div>
+    </div>
+    <div className="text-2xl font-semibold text-slate-800">
+      Description
+    </div>
+    <div className="text-xl ">
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur nulla, illo mollitia exercitationem ipsa corporis magnam similique optio voluptatem debitis hic quos libero iste blanditiis dolorum culpa fuga, enim, nesciunt dolores in id. Incidunt laboriosam odit, est facere saepe corrupti quos rerum accusantium ducimus maiores delectus minus doloremque illum officiis. Assumenda nam accusamus, nesciunt unde maxime debitis natus, voluptates eum officiis enim et corrupti modi repudiandae minima ratione culpa beatae!
+    </div>
+
       </div>
       </div>
 
-        <div className="p-0 m-0 w-1/2 h-full object-cover"
+        <div className="p-0 m-0 w-1/2 h-0 md:h-full object-cover"
           onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}
           onTouchEnd={onTouchEnd}
@@ -198,7 +216,7 @@ const ExclusiveInfo = () => {
           onMouseUp={onMouseUp}
           onMouseLeave={onMouseLeave}
         >
-            <img src={property.image[currentImageIndex]} className="h-174.5" alt="" />
+            <img src={property.image[currentImageIndex]} className="h-0 md:h-215" alt="" />
         </div>
     </div>
     </div>

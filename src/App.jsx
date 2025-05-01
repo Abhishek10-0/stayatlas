@@ -6,6 +6,8 @@ import Exclusive from "./pages/Exclusive"
 import Explore from "./pages/Explore"
 import ErrorPage from "./pages/ErrorPage"
 import ListYourProperty from "./pages/FooterPage/ListYourProperty";
+import ViewExclusive from "./pages/ViewExclusive"
+import ExclusiveLayout from "./layout/ExclusiveLayout"
 
 function App() {
 
@@ -33,9 +35,18 @@ function App() {
       {
         path:"/list-your-property",
         element:(<ListYourProperty/>)
-      }
+      },
     ]
-  }])
+  },
+  {
+    path: "/viewExclusive",    // new route
+    element: <ExclusiveLayout />, // different layout
+    children: [
+      { path: "/viewExclusive", element: <ViewExclusive /> }
+    ],
+  }
+  
+  ])
 
   return (
     <main>
