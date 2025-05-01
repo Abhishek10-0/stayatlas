@@ -83,7 +83,7 @@ const Form = () => {
         variant="filled"
         InputProps={{
           inputProps: {
-            min: today, // Disable past dates
+            min: today, // Disabling past dates 
           },
         }}
       />
@@ -97,7 +97,7 @@ const Form = () => {
         variant="filled"
         InputProps={{
           inputProps: {
-            min: checkIn ? checkIn : today, // Ensure checkout is after checkin
+            min: checkIn ? checkIn : today, // making sure checkout date is atleast one day after checkin date.
           },
         }}
       />

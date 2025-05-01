@@ -11,11 +11,16 @@ import CloseIcon from '@mui/icons-material/Close';
 import GoogleIcon from '@mui/icons-material/Google';
 
 const LoginForm = ({ onClose }) => {
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [otpSent, setOtpSent] = useState(false);
   const [otpVerified, setOtpVerified] = useState(false);
   const [captcha, setCaptcha] = useState('ABCD1234');
 
   const sendOTP = () => {
+    if (phoneNumber.length !== 10) {
+      alert('Phone number must be exactly 10 digits.');
+      return;
+    }
     setOtpSent(true);
     alert('OTP Sent!');
   };
@@ -57,6 +62,14 @@ const LoginForm = ({ onClose }) => {
             label="Phone Number"
             variant="filled"
             required
+            value={phoneNumber}
+            onChange={(e) => {
+              const value = e.target.value.replace(/\D/g, ''); 
+              if (value.length <= 10) {
+                setPhoneNumber(value);
+              }
+            }}
+            inputProps={{ maxLength: 10 }}
           />
 
           <Button variant="contained" onClick={sendOTP}>
