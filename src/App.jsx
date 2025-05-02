@@ -5,10 +5,17 @@ import Booking from "./pages/Booking"
 import Exclusive from "./pages/Exclusive"
 import Explore from "./pages/Explore"
 import ErrorPage from "./pages/ErrorPage"
+import AdminDashboard from "./pages/admin/adminDashboard"
 
 function App() {
 
-  const appRouter = createBrowserRouter([{
+  const appRouter = createBrowserRouter([
+    {
+      path:"/admin",
+      element: <AdminDashboard/>,
+      errorElement: <ErrorPage />
+    },
+    {
     path:"/",
     element:<MainLayout/>,
     errorElement:<ErrorPage/>,
