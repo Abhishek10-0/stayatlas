@@ -8,6 +8,7 @@ import ErrorPage from "./pages/ErrorPage"
 import ListYourProperty from "./pages/FooterPage/ListYourProperty";
 import ViewExclusive from "./pages/ViewExclusive"
 import ExclusiveLayout from "./layout/ExclusiveLayout"
+import UserManagement from "./components/UserManagement"
 
 function App() {
 
@@ -31,6 +32,10 @@ function App() {
       {
         path:"/explore",
         element:(<Explore/>)
+      },
+      {
+        path:"/user-management",
+        element:(<UserManagement/>)
       },
       {
         path:"/list-your-property",
